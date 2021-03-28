@@ -28,7 +28,7 @@ public class WebappApplication {
 		return new Configuration("spring-boot",
 				new Configuration.SamplerConfiguration(ProbabilisticSampler.TYPE, 1),
 				new Configuration.ReporterConfiguration())
-				.getTracer();
+				.getTracer();  // Get the actual OpenTracing-compatible Tracer.
 	}
 
 	//@Bean
