@@ -1,0 +1,24 @@
+------------WEBAPP----------
+kubectl apply -f /home/christina-maria/Documents/tracing/webapp/k8s/deployment.yaml
+kubectl apply -f /home/christina-maria/Documents/tracing/webapp/k8s/service.yaml
+kubectl port-forward svc/webapp 8080:8080
+
+-------------JAEGER--------------------------
+kubectl create  -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/crds/jaegertracing.io_jaegers_crd.yaml
+kubectl create  -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/service_account.yaml
+kubectl create  -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/role.yaml
+kubectl create  -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/role_binding.yaml
+kubectl create  -f /home/christina-maria/Documents/tracing/webapp/k8s/jaeger/operator.yaml
+
+kubectl create -f https://raw.githubusercontent.com/jaegertracing/jaeger-operator/master/deploy/cluster_role.yaml
+kubectl create -f /home/christina-maria/Documents/tracing/webapp/k8s/jaeger/cluster_role_binding.yaml
+
+kubectl apply -f /home/christina-maria/Documents/tracing/webapp/k8s/jaeger/simplest.yaml
+
+kubectl get  ingress # the Jaeger UI is available at
+
+-------------ZIPKIN--------------
+kubectl create -f /home/christina-maria/Documents/tracing/webapp/k8s/zipkin/PV.yml
+kubectl create -f /home/christina-maria/Documents/tracing/webapp/k8s/zipkin/zipkin-starter-minimal-0.1.5-kubernetes.yml
+
+

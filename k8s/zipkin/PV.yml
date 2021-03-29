@@ -1,0 +1,17 @@
+apiVersion: "v1"
+kind: "PersistentVolumeClaim"
+metadata:
+  labels:
+    provider: "fabric8"
+    project: "zipkin-mysql"
+    version: "0.1.5"
+    group: "io.fabric8.zipkin"
+  name: "mysql-data"
+  annotations:
+    volume.alpha.kubernetes.io/storage-class: default
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "100Mi"
